@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.promineotech.music.entity.Song;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
@@ -65,9 +69,9 @@ public interface MusicViewingController {
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Song> fetchSongs(
-      @Pattern(regexp = "[\\w\\s]*")
+      @Pattern(regexp = "[\\f\\s]*")
       @RequestParam(required = false)
-        String albumId);
+        int albumId);
       //@formatter:off
       
       

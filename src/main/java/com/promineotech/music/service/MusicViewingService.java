@@ -10,6 +10,6 @@ public interface MusicViewingService {
    * @param albumId
    * @return
    */
-   List<Song> fetchSongs(String albumId);
+   List<Song> fetchSongs(int albumId);
 }
   

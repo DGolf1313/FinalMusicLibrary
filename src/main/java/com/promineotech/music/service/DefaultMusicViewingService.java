@@ -21,7 +21,7 @@ public class DefaultMusicViewingService implements MusicViewingService {
   
   @Transactional(readOnly = true)
   @Override
-  public List<Song> fetchSongs(String albumId) {
+  public List<Song> fetchSongs(int albumId) {
     log.info("The fetchSongs method was called for the albumId={}", albumId);
     List<Song> songs = musicViewingDao.fetchSongs(albumId);
     

@@ -10,5 +10,5 @@ public interface MusicViewingDao {
    * @param albumId
    * @return
    */
-  List<Song> fetchSongs(String albumId);
+  List<Song> fetchSongs(int albumId);
 }

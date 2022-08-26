@@ -1,6 +1,9 @@
 package com.promineotech.music.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +22,12 @@ public class DefaultMusicViewingDao implements MusicViewingDao {
   private NamedParameterJdbcTemplate jdbcTemplate;
   
   @Override
-  public List<Song> fetchSongs(String albumId) {
+  public List<Song> fetchSongs(int albumId) {
     log.debug("DAO: albumId={}");
-    
+   if(albumId.) {
+     
+     
+   }
   //@formatter:off
     String sql = ""
         + "SELECT * "
@@ -29,11 +35,14 @@ public class DefaultMusicViewingDao implements MusicViewingDao {
         + "WHERE album_id = :album_id";
     //@formatter:0n
     
-    Map<String, Object> params = new HashMap<>();
-      params.put(albumId, params)
-    
-    
-    return null;
+   
+   
+  
+   
+   
+   
+   
+   
   }
 
 }

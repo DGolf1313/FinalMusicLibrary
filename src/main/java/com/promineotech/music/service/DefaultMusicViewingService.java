@@ -21,7 +21,7 @@ public class DefaultMusicViewingService implements MusicViewingService {
   
   @Transactional(readOnly = true)
   @Override
-  public List<Song> fetchSongs(int albumId) {
+  public List<Song> fetchSongs(String albumId) {
     log.info("The fetchSongs method was called for the albumId={}", albumId);
     List<Song> songs = musicViewingDao.fetchSongs(albumId);
     
@@ -29,7 +29,7 @@ public class DefaultMusicViewingService implements MusicViewingService {
       String msg = String.format("No songs were found in albumId=%s" , albumId);
       throw new NoSuchElementException(msg);
     }
-    Collections.sort(songs);
+   // Collections.sort(songs);
     return songs;
   }
 

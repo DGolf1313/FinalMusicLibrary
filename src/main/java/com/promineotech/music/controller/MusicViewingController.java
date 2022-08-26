@@ -69,9 +69,9 @@ public interface MusicViewingController {
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Song> fetchSongs(
-      @Pattern(regexp = "[\\f\\s]*")
+      @Pattern(regexp = "[\\w\\s]*")
       @RequestParam(required = false)
-        int albumId);
+        String albumId);
       //@formatter:off
       
       

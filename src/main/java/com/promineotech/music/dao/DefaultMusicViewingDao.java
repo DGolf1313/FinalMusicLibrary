@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.apache.tomcat.util.http.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import com.promineotech.music.entity.Song;
@@ -22,21 +24,21 @@ public class DefaultMusicViewingDao implements MusicViewingDao {
   private NamedParameterJdbcTemplate jdbcTemplate;
   
   @Override
-  public List<Song> fetchSongs(int albumId) {
+  public List<Song> fetchSongs(String albumId) {
     log.debug("DAO: albumId={}");
-   if(albumId.) {
      
-     
-   }
+   
   //@formatter:off
     String sql = ""
-        + "SELECT * "
+        + "SELECT song_name "
         + "FROM song "
         + "WHERE album_id = :album_id";
     //@formatter:0n
     
+    MapSqlParameterSource params = new MapSqlParameterSource();
+    
    
-   
+   return null;
   
    
    

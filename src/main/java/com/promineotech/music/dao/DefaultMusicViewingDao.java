@@ -2,12 +2,14 @@ package com.promineotech.music.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.apache.tomcat.util.http.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -35,15 +37,21 @@ public class DefaultMusicViewingDao implements MusicViewingDao {
         + "WHERE album_id = :album_id";
     //@formatter:0n
     
-    MapSqlParameterSource params = new MapSqlParameterSource();
+    Map<String, Object> params = new HashMap<>();
+    params.put("song_name", albumId.toString());
     
-   
-   return null;
-  
-   
-   
-   
-   
+    return jdbcTemplate.query(sql, params, new RowMapper<>() {
+      
+      @Override
+      public Song mapRow(ResultSet rs, int rowNum) throws SQLException {
+      
+      //@formatter:off
+      return Song.builder()
+          .songName(rs.getString("song_name"))
+          .build();
+      //@formatter:on
+    }});
+    
    
   }
 

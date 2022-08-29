@@ -38,8 +38,8 @@ public class DefaultMusicViewingDao implements MusicViewingDao {
     //@formatter:0n
     
     Map<String, Object> params = new HashMap<>();
-    params.put("song_name", albumId.toString());
-    
+    //params.put("song_name", albumId.toString());
+    params.put("album_id", albumId);
     return jdbcTemplate.query(sql, params, new RowMapper<>() {
       
       @Override

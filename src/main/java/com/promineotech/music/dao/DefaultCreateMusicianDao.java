@@ -1,11 +1,13 @@
 package com.promineotech.music.dao;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import com.promineotech.music.entity.Musician;
+import com.promineotech.music.entity.MusicianRequest;
 
 public class DefaultCreateMusicianDao implements CreateMusicianDao {
 
@@ -14,7 +16,7 @@ public class DefaultCreateMusicianDao implements CreateMusicianDao {
   private NamedParameterJdbcTemplate jdbcTemplate;
   
   @Override
-  public void saveMusician(Musician musician) {
+  public Musician saveMusician(MusicianRequest musician) {
     
     String sql = ""
         +"INSERT INTO musician ("
@@ -23,21 +25,30 @@ public class DefaultCreateMusicianDao implements CreateMusicianDao {
         +":first_name, :last_name, alias_name"
         +")";
     
-    Map<String, Object> params = new HashMap<>();
-    params.put("first_name", musician.getFirstName());
-    params.put("last_name", musician.getLastName());
-    params.put("alias_name", musician.getAliasName());
-    
-    jdbcTemplate.update(sql, params);
-    
-  }
-
-  @Override
-  public Optional<Musician> fetchMusician(String firstName, String lastName, String aliasName) {
-    // TODO Auto-generated method stub
-    return Optional.empty();
-  }
+    MapSqlParameterSource parms = new MapSqlParameterSource();
+    parms.addValue("first_name", musician.getFirstName());
+    parms.addValue("last_name", musician.getLastName());
+    parms.addValue("alias_name", musician.getAliasName()); KeyHolder keyHolder = new GeneratedKeyHolder();
+    jdbcTemplate.update(sql, parms, keyHolder); 
+    // @formatter:off
+    return Musician.builder()
+        .musicianId(keyHolder.getKey().intValue())
+        .firstName(musician.getFirstName())
+        .lastName(musician.getLastName())
+        .aliasName(musician.getAliasName())
+        .build();
+    // @formatter:on
+   }
 }
+
+/*
+ * @Override public Optional<Musician> fetchMusician(String firstName, String lastName, String
+ * aliasName) { // TODO Auto-generated method stub return Optional.empty(); }
+ * 
+ * }
+ */
+//The following is code that I was originally trying, but chose to go a different route.  
+
 /*public Musician saveMusician(String firstName, String lastName, String aliasName) {
 SqlParams params = generateInsertSql(firstName, lastName);
 return Musician.builder()
@@ -61,3 +72,12 @@ return null;
   //MapSqlParameterSource source = new MapSqlParameterSource();
 
 //}
+
+/* Map<String, Object> params = new HashMap<>();
+params.put("first_name", musician.getFirstName());
+params.put("last_name", musician.getLastName());
+params.put("alias_name", musician.getAliasName());
+
+jdbcTemplate.update(sql, params);
+
+}*/

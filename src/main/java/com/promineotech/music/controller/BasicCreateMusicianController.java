@@ -17,7 +17,7 @@ public class BasicCreateMusicianController implements CreateMusicianController {
   private CreateMusicianService createMusicianService;
   
   @Override
-  public Musician createMusician(@Valid MusicianRequest musicianRequest) {
+  public Musician createMusician( MusicianRequest musicianRequest) {
     log.debug("Musician={}", musicianRequest);
     return createMusicianService.createMusician(musicianRequest);
   }

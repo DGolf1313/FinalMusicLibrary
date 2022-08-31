@@ -21,5 +21,7 @@ public class MusicianRequest {
   @Length(max = 50)
   @Pattern(regexp = "[\\w\\s]*")
   private String aliasName;
+  
+  
 
 }

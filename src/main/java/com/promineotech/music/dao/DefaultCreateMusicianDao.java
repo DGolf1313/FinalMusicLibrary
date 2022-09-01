@@ -6,9 +6,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 import com.promineotech.music.entity.Musician;
 import com.promineotech.music.entity.MusicianRequest;
+import lombok.extern.slf4j.Slf4j;
 
+@Component
+@Slf4j
 public class DefaultCreateMusicianDao implements CreateMusicianDao {
 
 
@@ -17,6 +21,7 @@ public class DefaultCreateMusicianDao implements CreateMusicianDao {
   
   @Override
   public Musician saveMusician(MusicianRequest musician) {
+  log.debug("DAO: musician={}");
     
     String sql = ""
         +"INSERT INTO musician ("

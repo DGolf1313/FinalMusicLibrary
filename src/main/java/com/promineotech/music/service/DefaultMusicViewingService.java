@@ -1,6 +1,5 @@
 package com.promineotech.music.service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;

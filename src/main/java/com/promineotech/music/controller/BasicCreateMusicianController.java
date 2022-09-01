@@ -1,6 +1,5 @@
 package com.promineotech.music.controller;
 
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.promineotech.music.entity.Musician;

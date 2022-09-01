@@ -8,5 +8,10 @@ public interface CreateMusicianDao {
   
   //Optional<Musician> fetchMusician(String firstName, String lastName, String aliasName);
 
+  /**
+   * 
+   * @param musicianRequest
+   * @return
+   */
   Musician saveMusician(MusicianRequest musicianRequest);
 }

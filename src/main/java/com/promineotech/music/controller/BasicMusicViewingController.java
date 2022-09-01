@@ -15,7 +15,6 @@ public class BasicMusicViewingController implements MusicViewingController {
   @Autowired
   private MusicViewingService musicViewingService;
   
-  
   @Override
   public List<Song> fetchSongs(String albumId) {
     log.debug("albumId={}", albumId);

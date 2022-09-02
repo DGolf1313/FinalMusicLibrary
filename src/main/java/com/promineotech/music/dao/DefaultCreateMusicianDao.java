@@ -21,13 +21,13 @@ public class DefaultCreateMusicianDao implements CreateMusicianDao {
   
   @Override
   public Musician saveMusician(MusicianRequest musician) {
-  log.debug("DAO: musician={}");
+  log.debug("DAO the musician:", musician.getFirstName().toString(), musician.getLastName().toString());
     
     String sql = ""
         +"INSERT INTO musician ("
         +"first_name, last_name, alias_name"
         +") VALUES ("
-        +":first_name, :last_name, alias_name"
+        +":first_name, :last_name, :alias_name"
         +")";
     
     MapSqlParameterSource parms = new MapSqlParameterSource();

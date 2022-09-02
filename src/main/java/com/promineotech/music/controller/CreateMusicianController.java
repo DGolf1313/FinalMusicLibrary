@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -56,17 +57,10 @@ public interface CreateMusicianController {
               description = "An unplanned error occurred.", 
               content = @Content(
                   mediaType = "application/json"))
-      },
-      parameters = {
-          @Parameter(
-          name = "musicianRequest",
-          required = true,
-          description = "The musicians is JSON"),
-          
       }
       )
   
-  @PostMapping
+  @PutMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   Musician createMusician(@Valid @RequestBody MusicianRequest musicianRequest);
       //@formatter:off
